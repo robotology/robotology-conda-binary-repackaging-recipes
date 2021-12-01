@@ -1,0 +1,29 @@
+{% set name = "ensenso" %}
+{% set version = "2.3.1174" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  - url: https://github.com/robotology/robotology-vcpkg-binary-ports/releases/download/storage/ensenso-{{ version }}.zip
+    sha256: f72d75b2edc170a43b43d90d040fd5cada0d8329fb4685c7cb48166ef48897458e459deca8ebabed833912964298090c517cfdcfe7029498415e3f31873f7e61
+
+build:
+  number: 0
+  skip: true  # [not win]
+  # no run_exports as this package only contains a .lib 
+
+test:
+  commands:
+    - if not exist %PREFIX%\\Library\\include\\nxLib.h exit 1  # [win]
+    - if not exist %PREFIX%\\Library\\lib\\nxLib64.lib exit 1  # [win]
+
+about:
+  home: https://www.ensenso.com/support/sdk-download/
+  license_file: Eula.txt
+  summary: Software Development Kit (SDK) to read data from Ensenso cameras.
+
+extra:
+  recipe-maintainers:
+    - traversaro
