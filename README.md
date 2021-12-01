@@ -1,7 +1,7 @@
 # robotology-conda-binary-repackaging-recipes
 
 Recipes for packaging as conda package closed source dependencies of robotology software, that are distributed in the `robotology` anaconda channel.
-It is not where the conda recipes for robotology packages are either stored in conda-forge, or generated on the fly by the robotology-superbuild, see https://github.com/robotology/robotology-superbuild/blob/master/doc/developers-faqs.md#how-to-ensure-that-binary-packages-are-correctly-generated-for-a-new-package for more info.
+It is not where the conda recipes for robotology packages are either stored in conda-forge, or generated on the fly by the robotology-superbuild, see https://github.com/robotology/robotology-superbuild/blob/master/doc/conda-recipe-generation.md and https://github.com/robotology/robotology-superbuild/blob/master/doc/developers-faqs.md#how-to-ensure-that-binary-packages-are-correctly-generated-for-a-new-package for more info.
 
 
 ## How to install generated packages
