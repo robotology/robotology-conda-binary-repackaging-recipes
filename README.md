@@ -23,3 +23,11 @@ At the moment, all packages are only available on Windows.
 ## How to regenerate packages and upload them on robotology (for developer, advanced)
 
 If you modified the recipes contained in this repo (for example if you updated the version of the dependencies) and you want to regenerate and upload the conda packages, just run the `generate-conda-packages` GitHub Action Workflow. 
+
+## Maintainers
+
+This repository is maintained by:
+
+| | |
+|:---:|:---:|
+| [<img src="https://github.com/traversaro.png" width="40">](https://github.com/traversaro) | [@traversaro](https://github.com/traversaro) 
