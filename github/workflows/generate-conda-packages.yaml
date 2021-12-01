@@ -1,0 +1,65 @@
+name: Generate conda packages
+# Check the README for more info
+
+on:
+  workflow_dispatch:
+    inputs:
+      upload_conda_binaries:
+        description: 'If true, upload conda binaries, for any other value only generate them without uploading.'     
+        required: true
+        default: 'true'
+
+jobs:
+    generate-conda-packages:
+        name: "Generate conda packages @${{ matrix.os }}"
+        runs-on:  ${{ matrix.os }}
+        strategy:
+            fail-fast: false
+            matrix:
+              include:
+                - os: ubuntu-latest
+                  conda_platform: linux-64
+                - os: macos-latest
+                  conda_platform: osx-64
+                - os: windows-2019
+                  conda_platform: win-64
+
+        steps:
+        - uses: actions/checkout@v2
+
+        - uses: conda-incubator/setup-miniconda@v2
+          with:
+            mamba-version: "*"
+            channels: conda-forge
+            channel-priority: true
+            python-version: "3.8"
+
+        # Python 3.8 is required by https://github.com/Anaconda-Platform/anaconda-client/pull/551
+        - name: Dependencies for conda recipes generation and upload
+          shell: bash -l {0}
+          run: |
+            mamba install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning mamba boa
+
+        - name: Print used environment
+          shell: bash -l {0}
+          run: |
+            mamba list
+            env
+
+        - name: Build conda packages
+          shell: bash -l {0}
+          run: |
+            conda config --remove channels defaults
+            cd recipes
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml .
+
+        - name: Upload conda packages
+          shell: bash -l {0}
+          # Upload by default on schedule events, and on workflow dispatch only if input upload_conda_binaries is 'true'
+          if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload_conda_binaries == 'true')
+          env:
+            ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
+          run: |
+            cd ${CONDA_PREFIX}/conda-bld/${{ matrix.conda_platform}}/
+            ls *.tar.bz2
+            anaconda upload --skip-existing *.tar.bz2
