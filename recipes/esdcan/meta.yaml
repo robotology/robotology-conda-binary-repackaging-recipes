@@ -11,22 +11,17 @@ source:
 
 build:
   number: 0
-  run_exports:
-    - {{ pin_subpackage(name, max_pin='x.x.x') }}
+  skip: true  # [not win]
+  # no run_exports as this package only contains a .lib 
 
 test:
   commands:
-    - test -f ${PREFIX}/include/open62541/server.h  # [not win]
-    - test -f ${PREFIX}/lib/libopen62541.so  # [linux]
-    - test -f ${PREFIX}/lib/libopen62541.dylib  # [osx]
-    - test -f ${PREFIX}/lib/cmake/open62541/open62541Config.cmake  # [not win]
-    - if not exist %PREFIX%\\Library\\include\\open62541\\server.h exit 1  # [win]
-    - if not exist %PREFIX%\\Library\\lib\\open62541.lib exit 1  # [win]
-    - if not exist %PREFIX%\\Library\\bin\\open62541.dll exit 1  # [win]
-    - if not exist %PREFIX%\\Library\\lib\\cmake\\open62541\\open62541Config.cmake exit 1  # [win]
+    - if not exist %PREFIX%\\Library\\include\\ntcan.h exit 1  # [win]
+    - if not exist %PREFIX%\\Library\\lib\\ntcan.lib exit 1  # [win]
 
 about:
   home: https://esd.eu/en/products/can-sdk
+  license_file: esd_license.txt
   summary: Software Development Kit (SDK) for esd NTCAN-API.
 
 extra:
