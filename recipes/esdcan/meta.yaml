@@ -1,0 +1,29 @@
+{% set name = "esdcan" %}
+{% set version = "6.3.0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  - url: https://github.com/robotology/robotology-vcpkg-binary-ports/releases/download/storage/esdcan-{{ version }}.zip
+    sha256: 942fc34bb65edb70040978dfb482cc19fda39c5b93faadde87617eed35a0029b
+
+build:
+  number: 0
+  skip: true  # [not win]
+  # no run_exports as this package only contains a .lib 
+
+test:
+  commands:
+    - if not exist %PREFIX%\\Library\\include\\ntcan.h exit 1  # [win]
+    - if not exist %PREFIX%\\Library\\lib\\ntcan.lib exit 1  # [win]
+
+about:
+  home: https://esd.eu/en/products/can-sdk
+  license_file: esd_license.txt
+  summary: Software Development Kit (SDK) for esd NTCAN-API.
+
+extra:
+  recipe-maintainers:
+    - traversaro
