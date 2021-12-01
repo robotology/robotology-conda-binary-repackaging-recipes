@@ -38,7 +38,7 @@ jobs:
         - name: Dependencies for conda recipes generation and upload
           shell: bash -l {0}
           run: |
-            mamba install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning mamba boa
+            mamba install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning
 
         - name: Print used environment
           shell: bash -l {0}
@@ -51,7 +51,7 @@ jobs:
           run: |
             conda config --remove channels defaults
             cd recipes
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml .
+            conda build -m ${CONDA_PREFIX}/conda_build_config.yaml .
 
         - name: Upload conda packages
           shell: bash -l {0}
