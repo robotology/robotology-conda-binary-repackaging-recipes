@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  - url: https://github.com/robotology/robotology-vcpkg-binary-ports/releases/download/storage/esdcan-${version}.zip
+  - url: https://github.com/robotology/robotology-vcpkg-binary-ports/releases/download/storage/esdcan-{{ version }}.zip
     sha256: 8a98b00df1dbb5a675c1d4554d3a277844fbfd7ce60df1f8b1f72ba92200cce0dd9bb833de158be223f1bdb47322486c5bfe57d60ec84e1a6822133627ed8e84
 
 build:
