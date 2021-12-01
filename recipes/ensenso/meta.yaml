@@ -7,7 +7,7 @@ package:
 
 source:
   - url: https://github.com/robotology/robotology-vcpkg-binary-ports/releases/download/storage/ensenso-{{ version }}.zip
-    sha256: f72d75b2edc170a43b43d90d040fd5cada0d8329fb4685c7cb48166ef48897458e459deca8ebabed833912964298090c517cfdcfe7029498415e3f31873f7e61
+    sha256: e0b77a1c430e8d404957d751c31bcab2655b0ca64e58d741e5f8c5ab72c67a9f
 
 build:
   number: 0
