@@ -1,0 +1,1 @@
+copy %SRC_DIR% %LIBRARY_PREFIX%
