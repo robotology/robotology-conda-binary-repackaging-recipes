@@ -15,7 +15,7 @@ conda install -c conda-forge -c robotology esdcan
 
 To install the `ensenso` package:
 ~~~
-conda install -c conda-forge -c robotology esdcan
+conda install -c conda-forge -c robotology ensenso
 ~~~
 
 At the moment, all packages are only available on Windows.
